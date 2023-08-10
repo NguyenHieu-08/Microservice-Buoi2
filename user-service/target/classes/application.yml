@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: user-service
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:mysql://localhost:3306/poc_user?useUnicode=true&characterEncoding=utf8&useSSL=false&createDatabaseIfNotExist=true
+    username: root
+    password: root
+    hikari:
+      poolName: Hikari
+      maximumPoolSize: 5
+      auto-commit: false
+      data-source-properties:
+        cachePrepStmts: true
+        prepStmtCacheSize: 250
+        prepStmtCacheSqlLimit: 2048
+        useServerPrepStmts: true
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    database: MYSQL
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate.id.new_generator_mappings: true
+      hibernate.connection.provider_disables_autocommit: true
+      hibernate.cache.use_second_level_cache: false
+      hibernate.cache.use_query_cache: false
+      hibernate.generate_statistics: false
+  config:
+    import: configserver:${CONFIG_SERVER_URL:http://localhost:8088/}

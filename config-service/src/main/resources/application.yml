@@ -1,0 +1,21 @@
+server:
+  port: 8088
+
+spring:
+  application:
+    name: config-service
+#  profiles:
+#    active: native
+#  cloud:
+#    config:
+#      server:
+#        native:
+#          search-locations: classpath:/config
+
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/cvo2022/config-server
+          clone-on-start: true
+          default-label: main
